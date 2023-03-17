@@ -30,14 +30,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func setupStatusItem() {
         guard let image = NSImage(named: "icon-deathadder") else { return }
+        let menu = NSMenu(title: "Razer")
         image.size = NSSize(width: image.size.width/2, height: image.size.height/2)
         statusItem.button?.image = image
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSetting)
+        ///Setup menu
+        statusItem.menu = menu
+        statusItem.menu?.addItem(withTitle: "Quit", action: #selector(terminate), keyEquivalent: "")
     }
     
     @objc private func showSetting() {
-        
+    }
+    
+    @objc func terminate() {
+        NSApp.terminate(nil)
     }
     //MARK: - Setup Mouse Down
     
